@@ -1,0 +1,15 @@
+{
+  "name": "expressjsexamples",
+  "version": "1.0.0",
+  "description": "Express JS examples and practice files",
+  "main": "route.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prasad Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.0",
+    "hbs": "^4.2.0"
+  }
+}

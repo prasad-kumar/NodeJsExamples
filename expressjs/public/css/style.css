@@ -1,0 +1,143 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    font-size: 67.75%;
+}
+
+button{
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.container{
+    width: 80%;
+    margin: auto;
+    min-height: 100vh;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: hsl(0, 0%, 95%);
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.logo{
+    border: 2px solid black;
+    padding: 1rem 2rem;
+    background-color: hsl(0, 0%, 0%);
+    color: hsl(0, 0%, 100%);
+}
+
+.nav-items{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+}
+
+.nav-items a {
+    list-style: none;
+    border: 1px solid black;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: black;
+}
+
+.nav-items a:hover{
+    color: white;
+    background-color: black;
+}
+
+.main-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 90vh;
+    text-align: center;
+}
+
+.main{
+    line-height: 4rem;
+}
+
+.main-btn{
+    padding: 1.4rem 5rem;
+    background-color: black;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.todo-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #efefef;
+    min-height: 14vh;
+}
+
+input:focus{
+    outline: none;
+}
+.todo-form input{
+    padding: 1rem 2rem;
+    border-radius: 0%;
+    border: 1px solid black;
+    width: 70%;
+}
+
+.todo-btn{
+    padding: 1rem 4rem;
+    margin-left: 1rem;
+    background-color: black;
+    border: none;
+    color: #fff;
+}
+
+.todo-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    min-height: 14vh;
+    margin-top: 1rem;
+}
+
+.todo-items{
+    list-style: none;
+    padding: 1rem;
+    width: 100%;
+
+}
+
+.todo-items li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background-color: #fff;
+}
+
+.todo-list-btn{
+    padding: 1rem 2rem;
+    background-color: black;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}

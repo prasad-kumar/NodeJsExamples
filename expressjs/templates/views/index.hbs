@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>headLinks}}
+  </head>
+  <body>
+
+    {{>header}}
+
+    <div class="main-section">
+      <div class="main">
+        <h1>Do You Wanna Add To Do ?</h1>
+        <a href="#todo-form" class="main-btn">Click Here</a>
+      </div>
+    </div>
+    <div class="container">
+      <form class="todo-form" id="todo-form">
+        <input
+          type="text"
+          name="todo"
+          id="todo"
+          placeholder="Enter what to do"
+        />
+        <button class="todo-btn" type="submit">Save</button>
+      </form>
+      <div class="todo-list" id="todo">
+        <ul class="todo-items"></ul>
+      </div>
+    </div>
+  </body>
+</html>
