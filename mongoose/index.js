@@ -6,11 +6,13 @@ mongoose.connect('mongodb://localhost:27017/ecommerce')
 .catch((err) => {console.log(err)});
 
 
-// Products collection schema defining
+// Products collection schema defining with inbuilt and userdefined validations
 const productSchema = new mongoose.Schema({
     productName:{
         type: String,
-        required: true
+        required: true,
+        trim : true,
+        unique : true
     },
     brand:{
         type: String,
@@ -18,15 +20,23 @@ const productSchema = new mongoose.Schema({
     },
     price:{
         type: Number,
-        required: true
+        required: true,
+        min: 0
     },
     quantity:{
         type: Number,
-        required: true
+        required: true,
+        validate(value){
+            if(value < 0 ) { 
+                throw new Error('quanitity should not be negative');
+            } 
+        }
     },
     rating:{
         type: Number,
-        required: true
+        required: true,
+        trim: 0,
+        min: 0
     },
     addedAt:{
         type: Date,
@@ -57,10 +67,10 @@ const createDocument = async () => {
     }
 }
 
-createDocument();
+// createDocument();
 
 
-// insert multiple documents into Products collection
+// // insert multiple documents into Products collection
 const createDocuments = async () => {
     try{
         const product1 = new Product({
@@ -99,10 +109,10 @@ const createDocuments = async () => {
     }
 }
 
-createDocuments();
+// createDocuments();
 
 
-// read all documents from Products collection
+// // read all documents from Products collection
 const readDocuments = async () => {
     try{
         const result = await Product.find();
@@ -112,10 +122,10 @@ const readDocuments = async () => {
     }
 }
 
-readDocuments();
+// readDocuments();
 
 
-// read specific document from Products collection
+// // read specific document from Products collection
 const readDocument = async () => {
     try{
         const result = await Product.find({productName:'iPhone 12'}).select({_id:0,price:1});
@@ -125,10 +135,10 @@ const readDocument = async () => {
     }
 }
 
-readDocument();
+// readDocument();
 
 
-// read only first document from Products collection
+// // read only first document from Products collection
 const readFirstDocument = async () => {
     try{
         const result = await Product.find().limit(1);
@@ -138,10 +148,10 @@ const readFirstDocument = async () => {
     }
 }
 
-readFirstDocument();
+// readFirstDocument();
 
 
-// read all documents which product price is greater than 55000
+// // read all documents which product price is greater than 55000
 const gt = async () => {
     try{
         const result = await Product.find({price: {$gt: 55000}});
@@ -151,9 +161,9 @@ const gt = async () => {
     }
 }
 
-gt();
+// gt();
 
-// read all documents which product price is less than 55000
+// // read all documents which product price is less than 55000
 const lt = async () => {
     try{
         const result = await Product.find({price: {$lt: 55000}});
@@ -163,10 +173,10 @@ const lt = async () => {
     }
 }
 
-lt();
+// lt();
 
 
-// read all documents which product rating is greater than or equal to 4.5
+// // read all documents which product rating is greater than or equal to 4.5
 const ratingGte = async () => {
     try{
         const result = await Product.find({rating: {$gte: 4.5}});
@@ -176,12 +186,12 @@ const ratingGte = async () => {
     }
 }
 
-ratingGte();
+// ratingGte();
 
 
-// read documents using logical operators
+// // read documents using logical operators
 
-// AND
+// // AND
 const and = async () => {
     try{
         const result = await Product.find({$and : [{brand:'Apple'}, {rating: {$gt : 4.5}}]});
@@ -191,9 +201,9 @@ const and = async () => {
     }
 }
 
-and();
+// and();
 
-// OR
+// // OR
 const or = async () => {
     try{
         const result = await Product.find({$or : [{price:{$lt: 50000}}, {rating: {$gt : 4.5}}]});
@@ -203,9 +213,56 @@ const or = async () => {
     }
 }
 
-or();
+// or();
 
 
+// Update document
+const updateDocument = async (_id) => {
+    try{
+        const result = await Product.findByIdAndUpdate({_id}, {$set: { productName:'MI 11X'}}, {new: true});
+        console.log(result);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+// updateDocument('626be94214dcb8f231136d8b');
+
+
+// Delete document
+const deleteDocument = async (_id) => {
+    try{
+        const result = await Product.findByIdAndDelete({_id});
+        console.log(result);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+// deleteDocument('626be94214dcb8f231136d8b');
+
+
+// count
+const count = async (_id) => {
+    try{
+        const result = await Product.find({brand:'Apple'}).count();
+        console.log(result);
+    }catch(error){
+        console.log(error);
+    }
+}
+
+// count();
+
+// sort
+const sort = async (_id) => {
+    try{
+        const result = await Product.find({quantity: {$lte : 90}}).sort({productName:1});
+        console.log(result);
+    }catch(error){
+        console.log(error);
+    }
+}
 
 
 
